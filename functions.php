@@ -7,7 +7,7 @@ function log_github_postdata(){
 	if(isset($_POST))
 	{
 		$gh_data = parse_gh_data();
-		$log = "\r". date("Y-m-d H:i:s - ") . serialize($gh_data);
+		$log = "\r". date("Y-m-d H:i:s - ") . $gh_data['repo'];
 		file_put_contents($gh_log_file, $log , FILE_APPEND | LOCK_EX);
 
 	}
@@ -15,6 +15,6 @@ function log_github_postdata(){
 
 function parse_gh_data(){
 	$raw_data = json_decode($_POST['payload']);
-	$new_data = $raw_data;
+	$new_data['repo'] = $raw_data->repository->url;
 	return $new_data;
 }
