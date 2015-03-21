@@ -18,6 +18,6 @@ function parse_gh_data(){
 	$raw_data = json_decode($_POST['payload']);
 	$new_data['repo'] = $raw_data->repository->url;
 	$new_data['user'] = $raw_data->pusher->name;
-	$new_data['rev'] = $raw_data->rev;
+	$new_data['rev'] = $raw_data->after;
 	return $new_data;
 }
