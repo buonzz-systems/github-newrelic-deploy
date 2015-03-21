@@ -24,7 +24,7 @@ function parse_gh_data(){
 
 function post_to_newrelic($app_id, $apikey){
 
-	$data = parse_gh_data();
+	$gh_data = parse_gh_data();
 
 	$dep_change = "This is a change log entry";
 	$dep_user = "This is the user entry";
@@ -48,6 +48,6 @@ function post_to_newrelic($app_id, $apikey){
 	
 	$nr_log_file = 'logs/newrelic.log';
 
-	$log = "\r". date("Y-m-d H:i:s - ") . $appid . ' - ' . $gh_data['user'] . ' - ' . $gh_data['rev'];
+	$log = "\r". date("Y-m-d H:i:s - ") . $app_id . ' - ' . $gh_data['user'] . ' - ' . $gh_data['rev'];
 		file_put_contents($nr_log_file, $log , FILE_APPEND | LOCK_EX);
 }
