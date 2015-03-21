@@ -3,7 +3,7 @@
 /**
 * Accept POST from Github Repository
 * https://developer.github.com/v3/activity/events/types/#pushevent
-* bumper 4
+* bumper 1
 */
  
 require_once "config.php";
