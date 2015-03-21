@@ -50,4 +50,32 @@ function post_to_newrelic($app_id, $apikey){
 
 	$log = "\r". date("Y-m-d H:i:s - ") . $app_id . ' - ' . $gh_data['user'] . ' - ' . $gh_data['rev'];
 		file_put_contents($nr_log_file, $log , FILE_APPEND | LOCK_EX);
+
+
+	#initialize curl 
+	$ch = curl_init();
+	 
+	curl_setopt ($ch, CURLOPT_VERBOSE, 1);
+	curl_setopt ($ch, CURLOPT_URL, $url);
+	curl_setopt ($ch, CURLOPT_HEADER, 1);
+	curl_setopt ($ch, CURLOPT_HTTPHEADER, $header );
+	curl_setopt ($ch, CURLOPT_POSTFIELDS, $dep_dat );
+	 
+	# Make the curl call for deployment
+	$http_result = curl_exec ($ch);
+	$error = curl_error($ch);
+	$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	 
+	#close curl 
+	curl_close ($ch);
+	 
+	#output status 
+	vprintf ("Code  %s\n", $http_code);
+	vprintf ("Results %s\n", $http_result);
+	file_put_contents($nr_log_file, $http_code . ' - '. $http_result , FILE_APPEND | LOCK_EX);
+
+	if ($error) {
+	   vprintf ("Error %s\n",$error);
+		file_put_contents($nr_log_file, $error , FILE_APPEND | LOCK_EX);
+	}
 }
