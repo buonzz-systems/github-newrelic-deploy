@@ -6,7 +6,7 @@
 */
  
 require_once "config.php";
-
+require_once "functions.php";
 
 $dep_change = "This is a change log entry";
 $dep_user = "This is the user entry";
@@ -28,6 +28,8 @@ $url = "https://api.newrelic.com/deployments.xml";
 #Create header info
 $header = array("x-api-key:".$apikey);
  
+ log_github_postdata();
+ /*
 #initialize curl 
 $ch = curl_init();
  
@@ -51,5 +53,5 @@ vprintf ("Results %s\n", $http_result);
 if ($error) {
    vprintf ("Error %s\n",$error);
 }
- 
+*/
 ?>
