@@ -9,27 +9,11 @@
 require_once "config.php";
 require_once "functions.php";
 
-$dep_change = "This is a change log entry";
-$dep_user = "This is the user entry";
-$dep_rev = "This is a version number";
-
-#compose the data string for curl
-
-$dep_dat = "deployment[app_id]=".$app_id;
-$dep_dat = $dep_dat."&deployment[description]=".$dep_description;
-$dep_dat = $dep_dat."&deployment[changelog]=".$dep_change;
-$dep_dat = $dep_dat."&deployment[user]=".$dep_user;
-$dep_dat = $dep_dat."&deployment[revision]=".$dep_rev;
-
-#There should be no changes necessary beyond this point
-
-#deployment url at New Relic
-$url = "https://api.newrelic.com/deployments.xml";
- 
-#Create header info
-$header = array("x-api-key:".$apikey);
- 
- log_github_postdata();
+if(isset($_POST))
+{
+	log_github_postdata();
+	post_to_newrelic($app_id, $apikey);
+}
 
 /*
 #initialize curl 
@@ -56,4 +40,3 @@ if ($error) {
    vprintf ("Error %s\n",$error);
 }
 */
-?>
