@@ -16,4 +16,5 @@ function log_github_postdata(){
 function parse_gh_data($data){
 	$raw_data = json_decode($data);
 	$new_data['repo_url'] = $raw_data['repository']['url'];
+	return $new_data;
 }
