@@ -29,7 +29,8 @@ $url = "https://api.newrelic.com/deployments.xml";
 $header = array("x-api-key:".$apikey);
  
  log_github_postdata();
- /*
+
+/*
 #initialize curl 
 $ch = curl_init();
  
