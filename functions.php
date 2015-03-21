@@ -6,15 +6,15 @@ function log_github_postdata(){
 	
 	if(isset($_POST))
 	{
-		$gh_data = parse_gh_data($_POST);
-		$log = date("\rY-m-d H:i:s -". serialize($gh_data));
+		$gh_data = parse_gh_data();
+		$log = "\r". date("Y-m-d H:i:s - ") . serialize($gh_data);
 		file_put_contents($gh_log_file, $log , FILE_APPEND | LOCK_EX);
 
 	}
 }
 
-function parse_gh_data($data){
-	$raw_data = json_decode($data);
+function parse_gh_data(){
+	$raw_data = json_decode($_POST['payload']);
 	$new_data = $raw_data;
 	return $new_data;
 }
