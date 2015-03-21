@@ -1,6 +1,12 @@
 <?php
+
+/**
+* Accept POST from Github Repository
+* https://developer.github.com/v3/activity/events/types/#pushevent
+*/
  
 require_once "config.php";
+
 
 $dep_change = "This is a change log entry";
 $dep_user = "This is the user entry";
