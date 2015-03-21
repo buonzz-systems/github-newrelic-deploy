@@ -1,0 +1,13 @@
+{
+    "name": "buonzz/github-newrelic-deploy",
+    "description": "Github Push Webhook to submit Deployments to NewRelic",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Darwin Biler",
+            "email": "darwin@buonzz.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
