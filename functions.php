@@ -33,10 +33,10 @@ function post_to_newrelic($app_id, $apikey){
 	#compose the data string for curl
 
 	$dep_dat = "deployment[app_id]=".$app_id;
-	$dep_dat = $dep_dat."&deployment[description]=".$data['repo'];
-	$dep_dat = $dep_dat."&deployment[changelog]=".'changes pushed in github';
-	$dep_dat = $dep_dat."&deployment[user]=".$data['user'];
-	$dep_dat = $dep_dat."&deployment[revision]=".$data['rev'];
+	$dep_dat = $dep_dat."&deployment[description]=".$gh_data['repo'];
+	$dep_dat = $dep_dat."&deployment[changelog]=". $gh_data['user'] . ' deployed changes. revision: ' . $gh_data['rev'];
+	$dep_dat = $dep_dat."&deployment[user]=".$gh_data['user'];
+	$dep_dat = $dep_dat."&deployment[revision]=".$gh_data['rev'];
 
 	#There should be no changes necessary beyond this point
 
