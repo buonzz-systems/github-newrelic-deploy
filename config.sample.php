@@ -6,7 +6,7 @@
 $apikey = "{INSERT YOUR API KEY HERE}";
  
 #Specify an existing New Relic app ID to Github Repos Mapping in here
-$app_ids[] = array( md5('https://github.com/vendor/repo') 
+$app_ids = array( md5('https://github.com/vendor/repo') 
 						=> "{INSERT YOUR APPLICATION ID HERE}");
  
 $dep_description = "This is your app id deployment";
