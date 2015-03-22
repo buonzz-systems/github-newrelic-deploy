@@ -9,8 +9,4 @@ $apikey = "{INSERT YOUR API KEY HERE}";
 $app_ids[] = array( 'https://github.com/vendor/repo' 
 						=> "{INSERT YOUR APPLICATION ID HERE}");
  
-#detect the app id
-$gh_data = parse_gh_data();
-$app_id = $app_ids[$gh_data['repo']];
-
 $dep_description = "This is your app id deployment";
