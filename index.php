@@ -15,10 +15,10 @@ if(isset($_POST))
 
 	$gh_data = parse_gh_data();
 
-	if(array_key_exists( $gh_data['repo'] , $app_ids))
+	if(array_key_exists( md5($gh_data['repo']) , $app_ids))
 	{
 		#detect the app id
-		$app_id = $app_ids[$gh_data['repo']];
+		$app_id = $app_ids[md5($gh_data['repo'])];
 		post_to_newrelic($app_id, $apikey);	
 	}
 	else
