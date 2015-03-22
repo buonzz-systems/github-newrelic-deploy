@@ -13,9 +13,18 @@ if(isset($_POST))
 {
 	log_github_postdata();
 
-	#detect the app id
 	$gh_data = parse_gh_data();
-	$app_id = $app_ids[$gh_data['repo']];
 
-	post_to_newrelic($app_id, $apikey);
+	if(array_key_exists( $gh_data['repo'] , $app_ids))
+	{
+		#detect the app id
+		$app_id = $app_ids[$gh_data['repo']];
+		post_to_newrelic($app_id, $apikey);	
+	}
+	else
+	{
+		$gh_log_file = 'logs/github.log';
+		$log = "\r". date("Y-m-d H:i:s - ") . 'app_id for '. $gh_data['repo'] . ' was not found in config.php';
+		file_put_contents($gh_log_file, $log , FILE_APPEND | LOCK_EX);
+	}
 }
